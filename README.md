@@ -31,7 +31,9 @@ This project demonstrates how to colorize black-and-white (grayscale) photos usi
 
 You can easily run this code on google colab by just clicking this badge [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AsadiAhmad/Colorize-Grayscale-Images/blob/main/Code/Colorize_Grayscale_Images.ipynb)
 
-# Models
+## Models
+
+we have used caffe colorization model.
 
 you can download models here : https://storage.openvinotoolkit.org/repositories/datumaro/models/colorization/
 
