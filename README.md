@@ -27,4 +27,8 @@ This project demonstrates how to colorize black-and-white (grayscale) photos usi
 - Numpy : Best Library for working with arrays in python
 - MatPlotLib : Library for showing the charts in python
 
+## 💻 Run the Notebook on Google Colab
+
+You can easily run this code on google colab by just clicking this badge [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AsadiAhmad/Colorize-Grayscale-Images/blob/main/Code/Colorize_Grayscale_Images.ipynb)
+
 data set link : https://storage.openvinotoolkit.org/repositories/datumaro/models/colorization/
