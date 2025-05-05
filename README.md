@@ -31,7 +31,9 @@ This project demonstrates how to colorize black-and-white (grayscale) photos usi
 
 You can easily run this code on google colab by just clicking this badge [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AsadiAhmad/Colorize-Grayscale-Images/blob/main/Code/Colorize_Grayscale_Images.ipynb)
 
-data set link : https://storage.openvinotoolkit.org/repositories/datumaro/models/colorization/
+# Models
+
+you can download models here : https://storage.openvinotoolkit.org/repositories/datumaro/models/colorization/
 
 ## 📝 Tutorial
 
@@ -161,7 +163,7 @@ plt.subplot(133),plt.imshow(colorized[...,::-1]),plt.title('Colorized');
 ```
 
 <div display=flex align=center>
-  <img src="/Pictures/result.jpg" width="800px"/>
+  <img src="/Pictures/result.jpg"/>
 </div>
 
 ## 🪪 License
