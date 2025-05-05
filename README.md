@@ -78,7 +78,7 @@ lab = cv.cvtColor(scaled, cv.COLOR_RGB2LAB)
 ```
 
 <div display=flex align=center>
-  <img src="/Pictures/grayscale.jpg" width="400px"/>
+  <img src="/Pictures/grayscale.jpg" width="800px"/>
 </div>
 
 ### Step 4: Initialize Neural Network
@@ -161,7 +161,7 @@ plt.subplot(133),plt.imshow(colorized[...,::-1]),plt.title('Colorized');
 ```
 
 <div display=flex align=center>
-  <img src="/Pictures/result.jpg" width="400px"/>
+  <img src="/Pictures/result.jpg" width="800px"/>
 </div>
 
 ## 🪪 License
