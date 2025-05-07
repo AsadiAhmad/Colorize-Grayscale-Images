@@ -45,7 +45,7 @@ we need to import these libraries :
 
 `cv2`, `numpy`, `matplotlib`, `gdown`
 
-```sh
+```python
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
@@ -58,11 +58,13 @@ We need to download the Caffe model and the grayscale image you want to colorize
 
 We download models from my google drive for protecting the repo in future.
 
-```sh
+```python
 gdown.download(id="1LvgEe5DnG_Vpd6n9laUlfgi1BCrG4dkv", output="pts_in_hull.npy", quiet=False)
 gdown.download(id="1yNtqZ0YueocX9TCET2hcK18XRbieR-Jv", output="colorization_release_v2.caffemodel", quiet=False)
 gdown.download(id="1hS6a-taPesUwPTqQ8wH32LJqybUov6Vs", output="colorization_deploy_v2.prototxt", quiet=False)
+```
 
+```sh
 !wget https://raw.githubusercontent.com/AsadiAhmad/Colorize-Grayscale-Images/main/Pictures/mansion.jpg -O mansion.jpg
 ```
 
@@ -72,7 +74,7 @@ We need to load images into `python` variables we ues `OpenCV` library to read t
 
 Also we normalize the image here.
 
-```sh
+```python
 image = cv.imread('mansion.jpg')
 grayscale_image = cv.imread('mansion.jpg', cv.IMREAD_GRAYSCALE)
 grayscale_rgb = cv.cvtColor(grayscale_image, cv.COLOR_GRAY2RGB)
@@ -87,7 +89,7 @@ lab = cv.cvtColor(scaled, cv.COLOR_RGB2LAB)
 
 ### Step 4: Initialize Neural Network
 
-```sh
+```python
 prototxt_src = "colorization_deploy_v2.prototxt"
 model_src = "colorization_release_v2.caffemodel"
 pts_src = "pts_in_hull.npy"
@@ -104,7 +106,7 @@ net.getLayer(conv8).blobs = [np.full([1,313],2.606,dtype=np.float32)]
 
 ### Step 5: Resize Image
 
-```sh
+```python
 resized = cv.resize(lab,(224,224))
 L_resized = cv.split(resized)[0] # others
 L_resized -= 50
@@ -114,13 +116,13 @@ L_resized -= 50
 
 We colorize the image in forward pass it means the image is passing throu the deep neural network.
 
-```sh
+```python
 net.setInput(cv.dnn.blobFromImage(L_resized))
 ab_channels = net.forward()[0, :, :, :].transpose((1, 2, 0))
 ab_channels = cv.resize(ab_channels, (grayscale_rgb.shape[1], grayscale_rgb.shape[0]))
 ```
 
-```sh
+```python
 ab_channels *= 1.3
 ```
 
@@ -128,7 +130,7 @@ ab_channels *= 1.3
 
 We convert BGR to LAB here.
 
-```sh
+```python
 L_resized = cv.split(lab)[0]
 colorized = np.concatenate((L_resized[:,:,np.newaxis], ab_channels), axis=2)
 colorized = cv.cvtColor(colorized,cv.COLOR_LAB2BGR)
@@ -140,7 +142,7 @@ colorized = (255 * colorized).astype("uint8")
 
 Increasing the saturation with converting it to the HSV color space
 
-```sh
+```python
 hsv = cv.cvtColor(colorized, cv.COLOR_BGR2HSV)
 hsv[..., 1] = np.clip(hsv[..., 1] * 1.25, 0, 255)
 colorized = cv.cvtColor(hsv, cv.COLOR_HSV2BGR)
@@ -148,7 +150,7 @@ colorized = cv.cvtColor(hsv, cv.COLOR_HSV2BGR)
 
 ### Step 9: Warm Shift
 
-```sh
+```python
 colorized = colorized.astype(np.float32)
 colorized[..., 2] *= 1.03  # Red
 colorized[..., 1] *= 1.01  # Green
@@ -157,7 +159,7 @@ colorized = np.clip(colorized, 0, 255).astype(np.uint8)
 
 ### Step 10: Show Image
 
-```sh
+```python
 plt.figure(figsize=[13, 6])
 plt.subplot(131),plt.imshow(image[...,::-1]),plt.title('First Image');
 plt.subplot(132),plt.imshow(grayscale_rgb[...,::-1]),plt.title('GrayScale');
