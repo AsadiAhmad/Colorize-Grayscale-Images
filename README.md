@@ -27,6 +27,7 @@ This project demonstrates how to colorize black-and-white (grayscale) photos usi
 - OpenCV : Best Library for working with images
 - Numpy : Best Library for working with arrays in python
 - MatPlotLib : Library for showing the charts in python
+- GDown : Download Resources from Google Drive
 
 ## 💻 Run the Notebook on Google Colab
 
